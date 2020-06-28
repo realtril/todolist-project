@@ -5,6 +5,7 @@ const selectors = {
   filterOption: document.querySelector(".filter-todo"),
 };
 
+document.addEventListener("DOMContentLoaded", getTodos);
 selectors.todoButton.addEventListener("click", addToDo);
 selectors.todoList.addEventListener("click", deleteCheck);
 selectors.filterOption.addEventListener("click", filterTodo);
@@ -45,7 +46,7 @@ function deleteCheck(e) {
       todo.remove();
     });
   }
-
+  //check mark
   if (item.classList[0] === "complete-btn") {
     const todo = item.parentElement;
     todo.classList.toggle("completed");
@@ -98,6 +99,8 @@ function getTodos() {
     todos = JSON.parse(localStorage.getItem("todos"));
   }
   todos.forEach(function (todo) {
+    const todoDiv = document.createElement("div");
+    todoDiv.classList.add("todo");
     const newToDo = document.createElement("li");
     newToDo.innerText = todo;
     newToDo.classList.add("todo-item");
